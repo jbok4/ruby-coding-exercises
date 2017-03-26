@@ -1,4 +1,5 @@
 require 'rspec'
+# https://www.youtube.com/watch?v=kg9KutIbnt4
 
 def fraction_calculator fraction_one, fraction_two, operator
   num1 = Rational(fraction_one)

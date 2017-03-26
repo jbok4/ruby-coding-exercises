@@ -1,6 +1,9 @@
 require 'rspec'
+# https://www.youtube.com/watch?v=vEIah6upXC8
+# http://apidock.com/ruby/String/upto
 
 def sum_generator num
+  1.upto(num).inject(&:+)
 end
 
 describe 'Dynamic sum' do
