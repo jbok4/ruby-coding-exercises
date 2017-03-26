@@ -1,7 +1,10 @@
 require 'rspec'
+# https://www.youtube.com/watch?v=UR7N-i3FJtM
 
 def pseudo_random num
+  # no idea how this works
 end
+
 
 describe 'Psudeo random number generator' do
   it 'creates the same sequence of random numbers' do
