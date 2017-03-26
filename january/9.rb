@@ -1,6 +1,16 @@
 require 'rspec'
 
 def fraction_calculator fraction_one, fraction_two, operator
+  num1 = Rational(fraction_one)
+  num2 = Rational(fraction_two)
+  result = case operator
+    when '/' then num1 / num2
+    when "*" then num1 * num2
+    when '+' then num1 + num2
+    when '-' then num1 - num2
+  end
+
+  result.to_s
 end
 
 describe 'Fraction multiplication' do
