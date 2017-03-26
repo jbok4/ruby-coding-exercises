@@ -2,6 +2,8 @@ require 'rspec'
 
 class Array
   def odd_selector
+    # rejecting all the even values
+    self.reject  { |n| n % 2 == 0 }
   end
 end
 
