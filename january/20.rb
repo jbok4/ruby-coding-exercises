@@ -1,4 +1,15 @@
 require 'rspec'
+# https://www.crondose.com/2017/01/check-value-exists-set-nested-hashes-ruby/
+
+Class Array
+  def value_included?(element)
+    each do |i|
+      return true if i.has_value?(element)
+    end
+    false
+  end
+end
+
 
 describe 'Collection search' do
   it 'checks to see if a value is included in any number of hashes nested inside an array' do
@@ -16,5 +27,5 @@ describe 'Collection search' do
     expect(books.value_included? 'Deep Work').to eq(true)
     expect(books.value_included? 'Something Else').to eq(false)
   end
-end
 
+end
