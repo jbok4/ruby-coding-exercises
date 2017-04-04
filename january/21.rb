@@ -1,6 +1,15 @@
 require 'rspec'
-
+# https://www.crondose.com/2017/01/build-multiplication-table-generator-ruby/
 def multiplication_table num
+  hash = {}
+  1.upto(num).each do |i|
+    multipliers = []
+    (1..10).each do |e|
+      multipliers << (e * i)
+    end
+    hash[i] = multipliers
+  end
+  hash
 end
 
 describe 'Multiplication table' do
