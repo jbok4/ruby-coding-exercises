@@ -1,4 +1,14 @@
 require 'rspec'
+# https://www.crondose.com/2017/01/build-user-class-can-passed-block-set-values-ruby/
+
+class User
+  attr_accessor :name, :email
+
+  def initialize
+    yield(self) if block_given?
+  end
+
+end
 
 describe 'Block User' do
   it 'Allows a user to be created with a block of values' do
@@ -11,7 +21,7 @@ describe 'Block User' do
     expect(user.email).to eq('test@test.com')
   end
 
-  it 'Allows a user to be created witout default values' do
+  it 'Allows a user to be created without default values' do
     user = User.new
     user.name = "Jordan"
     user.email = "test@test.com"
