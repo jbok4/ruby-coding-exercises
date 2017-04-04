@@ -1,4 +1,11 @@
 require 'rspec'
+# https://www.crondose.com/2017/01/using-blocks-dynamically-format-content-ruby/
+
+def lineup_generator(list, &block)
+  list.map.with_index(1) do |player, i|
+    yield(i, player)
+  end
+end
 
 describe 'Lineup Generator' do
   before do
