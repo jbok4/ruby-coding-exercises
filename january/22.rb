@@ -1,4 +1,41 @@
 require 'rspec'
+# https://www.crondose.com/2017/01/build-tip-calculator-ruby-can-accept-multiple-data-types-input/
+class String
+    def integer?
+        return true if self =~ /^[1-9]\d*(\.\d+)?$/
+        false
+    end
+end
+
+module Tippy
+    class Builder
+        def initialize total:, gratuity:
+            @total = total
+            @gratuity = gratuity
+        end
+
+        def generate
+            return calculation if number_based?
+            string_based
+        end
+
+        def number_based?
+          (@gratuity.is_a? Numeric) || (@gratuity.integer?)
+        end
+
+        def string_based
+          case @gratuity.downcase
+          when 'high'     then calculation 22
+          when 'standard' then calculation 19
+          when 'low'      then calculation 15
+          end
+        end
+
+        def calculation gratuity = @gratuity
+          @total += @total * (gratuity.to_f / 100)
+        end
+    end
+end
 
 describe 'Tip Generator' do
   it 'Accurately generates a tip given string or integer input' do
@@ -11,9 +48,9 @@ describe 'Tip Generator' do
     test_7 = Tippy::Builder.new(total: 100, gratuity: 0).generate
 
     expect(test_1).to eq(123.5)
-    expect(test_2).to eq(125.0)
+    expect(test_2).to eq(122.0)
     expect(test_3).to eq(115.0)
-    expect(test_4).to eq(118.0)
+    expect(test_4).to eq(119.0)
     expect(test_5).to eq(118.0)
     expect(test_6).to eq(120.0)
     expect(test_7).to eq(100.0)
